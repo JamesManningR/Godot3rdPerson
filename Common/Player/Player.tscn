@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://n7gjohyirs6"]
+
+[ext_resource type="Script" path="res://Common/Player/Player.gd" id="1_mujlk"]
+[ext_resource type="PackedScene" uid="uid://5ydk2sc005d5" path="res://Assets/Models/Raccoon.blend" id="2_sbq6y"]
+[ext_resource type="Script" path="res://Common/Player/Camera.gd" id="3_qv0ev"]
+[ext_resource type="PackedScene" uid="uid://88dp8et0sasu" path="res://Common/Player/Particles/JumpParticles.tscn" id="4_cmqu1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2c6r5"]
+radius = 0.4
+height = 1.85
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_mujlk")
+
+[node name="Raccoon" parent="." instance=ExtResource("2_sbq6y")]
+transform = Transform3D(-0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 0, 0.875, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925, 0.05)
+shape = SubResource("CapsuleShape3D_2c6r5")
+
+[node name="CameraArm" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59592, 0)
+spring_length = 6.0
+margin = 0.25
+script = ExtResource("3_qv0ev")
+
+[node name="Camera3D" type="Camera3D" parent="CameraArm"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0.982, 4)
+
+[node name="JumpParticles" parent="." instance=ExtResource("4_cmqu1")]
+emitting = false

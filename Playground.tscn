@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://cera7dp5a5nvv"]
+
+[ext_resource type="PackedScene" uid="uid://n7gjohyirs6" path="res://Common/Player/Player.tscn" id="1_6nt0b"]
+[ext_resource type="PackedScene" uid="uid://cckmxxdpo6jt0" path="res://Common/Barell.tscn" id="2_heyix"]
+[ext_resource type="Texture2D" uid="uid://y3rs8sb5blxb" path="res://Assets/HDRI/alps_field_2k.hdr" id="3_wbqp3"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ttb7l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_on3nd"]
+albedo_color = Color(0.0666667, 0.376471, 0.105882, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ntmor"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3uxik"]
+panorama = ExtResource("3_wbqp3")
+
+[sub_resource type="Sky" id="Sky_nbxv6"]
+sky_material = SubResource("PanoramaSkyMaterial_3uxik")
+
+[sub_resource type="Environment" id="Environment_dgs74"]
+background_mode = 2
+sky = SubResource("Sky_nbxv6")
+tonemap_mode = 3
+tonemap_exposure = 0.65
+tonemap_white = 1.2
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(9.15963, 0, 0, 0, 1, 0, 0, 0, 76.5068, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ttb7l")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_on3nd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(9.15963, 0, 0, 0, 1, 0, 0, 0, 76.5068, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ntmor")
+
+[node name="Player" parent="." instance=ExtResource("1_6nt0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000591278, 0.271552, -0.0159001)
+
+[node name="Barrel" parent="." instance=ExtResource("2_heyix")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65214, 1.07618, -2.22864)
+
+[node name="Barrel2" parent="." instance=ExtResource("2_heyix")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.79787, 2.69372, -2.3551)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dgs74")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.800731, 0.396142, -0.449335, 0, 0.750111, 0.661312, 0.599024, -0.529533, 0.600637, 0, -2.98653, 0)
+shadow_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Gui" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Gui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Gui/MarginContainer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1900.0
+offset_bottom = 1060.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Gui/MarginContainer/VBoxContainer"]
+offset_right = 1880.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 39
+text = "Some example text"

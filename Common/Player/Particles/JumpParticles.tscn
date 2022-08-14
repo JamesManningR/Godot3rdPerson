@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://88dp8et0sasu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6pji"]
+
+[sub_resource type="Curve" id="Curve_61eao"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j4xbh"]
+curve = SubResource("Curve_61eao")
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_7nhp4"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, -0.5, 0)
+initial_velocity_min = 0.58
+initial_velocity_max = 4.0
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_j4xbh")
+
+[sub_resource type="SphereMesh" id="SphereMesh_gihkw"]
+
+[node name="JumpParticles" type="GPUParticles3D"]
+transform = Transform3D(0.435887, 0, 0, 0, 0.149152, 0, 0, 0, 0.435887, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_r6pji")
+amount = 16
+explosiveness = 1.0
+randomness = 0.5
+fixed_fps = 16
+process_material = SubResource("ParticlesMaterial_7nhp4")
+draw_pass_1 = SubResource("SphereMesh_gihkw")
