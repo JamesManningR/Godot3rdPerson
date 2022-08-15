@@ -6,7 +6,7 @@ var look_sensitivity_y := .75
 var camera_zoom_weight := 1.0
 
 const MAX_CAMERA_ZOOM := 2.0
-const MIN_CAMERA_ZOOM := .0
+const MIN_CAMERA_ZOOM := .2
 const CAMERA_ZOOM_SENSITIVITY := .1
 const CAMERA_ZOOM_STEP: float = CAMERA_ZOOM_SENSITIVITY * 1
 
@@ -22,16 +22,15 @@ var mouse_delta := Vector2()
 @onready var camera: Camera3D = $Camera3D
 @onready var initial_spring_length := spring_length
 @onready var initial_camera_pos := camera.position
+@onready var min_spring_length: float = initial_spring_length * MIN_CAMERA_ZOOM
+@onready var max_spring_length: float = initial_spring_length * MAX_CAMERA_ZOOM
 
-func set_zoom_distance(weight: float):
+func set_zoom_weight(weight: float):
 	camera_zoom_weight = clamp(weight, MIN_CAMERA_ZOOM, MAX_CAMERA_ZOOM)
 
 func update_camera_position():
 	var camera_zoom_pos := position.lerp(initial_camera_pos, camera_zoom_weight)
-	camera.position = camera_zoom_pos
-
-func _ready():
-	add_excluded_object($JumpParticles)
+	set_length(camera_zoom_pos.z)
 
 
 func _input(event): 
@@ -41,10 +40,9 @@ func _input(event):
 	
 	elif event is InputEventMouseButton:
 		if (event.button_index == MOUSE_BUTTON_WHEEL_UP):
-			set_zoom_distance(camera_zoom_weight - CAMERA_ZOOM_STEP)
+			set_zoom_weight(camera_zoom_weight - CAMERA_ZOOM_STEP)
 		elif (event.button_index == MOUSE_BUTTON_WHEEL_DOWN):
-			set_zoom_distance(camera_zoom_weight + CAMERA_ZOOM_STEP)
-		# print(camera_zoom_weight)
+			set_zoom_weight(camera_zoom_weight + CAMERA_ZOOM_STEP)
 
 func _process(delta):
 	# Set the rotation value
