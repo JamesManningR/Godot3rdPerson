@@ -14,18 +14,24 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var jump_count = 0;
 
 func jump():
-	velocity.y = JUMP_VELOCITY
-	if jump_count > 0:
-		jump_particle.restart()
+	if jump_count == 0:
+		velocity.y = JUMP_VELOCITY
+	if jump_count <= 1:
+		double_jump()
 		
 	jump_count += 1
-	
+
+func double_jump():
+	# TODO: READD WHEN PARTICLES ARE FIXED
+	# jump_particle.restart()
+	velocity.y = JUMP_VELOCITY
+
 func respawn():
 	transform.origin = initial_pos
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+
 func _process(_delta):
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit()
@@ -35,7 +41,7 @@ func _physics_process(delta):
 	var speed = BASE_SPEED
 	if Input.is_action_pressed("action_sprint"):
 		speed = BASE_SPEED * SPRINT_SPEED_MULTIPLIER
-		
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta

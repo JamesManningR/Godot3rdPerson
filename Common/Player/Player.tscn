@@ -15,18 +15,18 @@ script = ExtResource("1_mujlk")
 [node name="Raccoon" parent="." instance=ExtResource("2_sbq6y")]
 transform = Transform3D(-0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 0, 0.875, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925, 0.05)
 shape = SubResource("CapsuleShape3D_2c6r5")
 
 [node name="CameraArm" type="SpringArm3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59592, 0)
-spring_length = 6.0
-margin = 0.25
+transform = Transform3D(1, 3.25032e-05, -5.7216e-05, -2.35299e-05, 0.988614, 0.150474, 6.1453e-05, -0.150474, 0.988614, 0, 1.59592, 0)
+spring_length = 4.0
+margin = 1.0
 script = ExtResource("3_qv0ev")
 
 [node name="Camera3D" type="Camera3D" parent="CameraArm"]
-transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0.982, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
 [node name="JumpParticles" parent="." instance=ExtResource("4_cmqu1")]
 emitting = false
