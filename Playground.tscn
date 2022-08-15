@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cera7dp5a5nvv"]
+[gd_scene load_steps=12 format=3 uid="uid://cera7dp5a5nvv"]
 
 [ext_resource type="PackedScene" uid="uid://n7gjohyirs6" path="res://Common/Player/Player.tscn" id="1_6nt0b"]
 [ext_resource type="PackedScene" uid="uid://cckmxxdpo6jt0" path="res://Common/Barell.tscn" id="2_heyix"]
 [ext_resource type="Texture2D" uid="uid://y3rs8sb5blxb" path="res://Assets/HDRI/alps_field_2k.hdr" id="3_wbqp3"]
 [ext_resource type="Script" path="res://GUI.gd" id="4_xfcn3"]
+[ext_resource type="PackedScene" uid="uid://jxij7qxu6xjs" path="res://Assets/Models/Coin.blend" id="5_5os5s"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ttb7l"]
 
@@ -82,3 +83,6 @@ offset_right = 1880.0
 offset_bottom = 57.0
 theme_override_font_sizes/font_size = 39
 text = "Some example text"
+
+[node name="Coin" parent="." instance=ExtResource("5_5os5s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9019, 1.98863, -10.3501)
