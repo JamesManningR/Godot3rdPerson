@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cera7dp5a5nvv"]
+[gd_scene load_steps=11 format=3 uid="uid://cera7dp5a5nvv"]
 
 [ext_resource type="PackedScene" uid="uid://n7gjohyirs6" path="res://Common/Player/Player.tscn" id="1_6nt0b"]
 [ext_resource type="PackedScene" uid="uid://cckmxxdpo6jt0" path="res://Common/Barell.tscn" id="2_heyix"]
 [ext_resource type="Texture2D" uid="uid://y3rs8sb5blxb" path="res://Assets/HDRI/alps_field_2k.hdr" id="3_wbqp3"]
+[ext_resource type="Script" path="res://GUI.gd" id="4_xfcn3"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ttb7l"]
 
@@ -56,6 +57,7 @@ transform = Transform3D(0.800731, 0.396142, -0.449335, 0, 0.750111, 0.661312, 0.
 shadow_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("4_xfcn3")
 
 [node name="Gui" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -75,7 +77,7 @@ offset_top = 20.0
 offset_right = 1900.0
 offset_bottom = 1060.0
 
-[node name="Label" type="Label" parent="CanvasLayer/Gui/MarginContainer/VBoxContainer"]
+[node name="JumpCounter" type="Label" parent="CanvasLayer/Gui/MarginContainer/VBoxContainer"]
 offset_right = 1880.0
 offset_bottom = 57.0
 theme_override_font_sizes/font_size = 39

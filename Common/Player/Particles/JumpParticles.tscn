@@ -23,9 +23,10 @@ scale_curve = SubResource("CurveTexture_j4xbh")
 [sub_resource type="SphereMesh" id="SphereMesh_gihkw"]
 
 [node name="JumpParticles" type="GPUParticles3D"]
-transform = Transform3D(0.435887, 0, 0, 0, 0.149152, 0, 0, 0, 0.435887, 0, 0, 0)
+transform = Transform3D(0.435887, 0, 0, 0, 0.149152, 0, 0, 0, 0.435887, -0.00551081, 0, 1.43051e-05)
 material_override = SubResource("StandardMaterial3D_r6pji")
 amount = 16
+lifetime = 0.75
 explosiveness = 1.0
 randomness = 0.5
 fixed_fps = 16
